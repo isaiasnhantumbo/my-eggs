@@ -5,12 +5,13 @@ import {DailyList} from './pages/DailyList';
 import Home from './pages/Home';
 import Feather from 'react-native-vector-icons/Feather';
 import {CreateNewStock} from './pages/CreateNewStock';
-const Tab = createBottomTabNavigator();
+
+const {Navigator, Screen} = createBottomTabNavigator();
 
 export default function Routes() {
   return (
     <NavigationContainer>
-      <Tab.Navigator
+      <Navigator
         screenOptions={{
           tabBarShowLabel: false,
           headerShown: false,
@@ -18,7 +19,7 @@ export default function Routes() {
           tabBarInactiveTintColor: '#746763',
           tabBarStyle: {backgroundColor: '#22151F', borderTopColor: '#EFE3C8'},
         }}>
-        <Tab.Screen
+        <Screen
           name="Home"
           component={Home}
           options={{
@@ -27,7 +28,7 @@ export default function Routes() {
             ),
           }}
         />
-        <Tab.Screen
+        <Screen
           name="List"
           component={DailyList}
           options={{
@@ -36,7 +37,7 @@ export default function Routes() {
             ),
           }}
         />
-        <Tab.Screen
+        <Screen
           name="New"
           component={CreateNewStock}
           options={{
@@ -46,7 +47,7 @@ export default function Routes() {
             ),
           }}
         />
-      </Tab.Navigator>
+      </Navigator>
     </NavigationContainer>
   );
 }
