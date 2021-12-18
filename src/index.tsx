@@ -1,6 +1,6 @@
 import React from 'react';
 import Reactotron from 'reactotron-react-native';
-import {ThemeProvider} from 'styled-components/native';
+import {ThemeProvider} from 'styled-components';
 import Routes from './routes';
 import theme from './styles/theme';
 
