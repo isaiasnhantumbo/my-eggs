@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 import React, {useState} from 'react';
 import {Label} from '../../components/Form/Label';
 import DatePicker from 'react-native-date-picker';
