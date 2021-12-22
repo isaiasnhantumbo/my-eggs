@@ -24,6 +24,29 @@ interface CreateNewStockProps {}
 export function CreateNewStock({}: CreateNewStockProps) {
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
+  const [eggs, setEggs] = useState('0');
+  const [ownerId, setOwnerId] = useState('');
+  const [formattedDate, setFormattedDate] = useState('');
+  const {UUID} = Realm.BSON;
+
+  async function handleFormSubmit() {
+    setOwnerId('2');
+
+    const data = {
+      _id: new UUID(),
+      number_of_eggs: eggs,
+      owner_id: ownerId,
+      status: '1',
+      date,
+    };
+    const realm = await getRealm();
+
+    realm.write(() => {
+      realm.create('Eggs', data);
+    });
+    setEggs('');
+    setFormattedDate('');
+  }
   return (
     <Container>
       <Header title="Adicionar registo" />
