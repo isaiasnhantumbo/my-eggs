@@ -1,10 +1,13 @@
+/* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {DailyList} from './pages/DailyList';
-import Home from './pages/Home';
 import Feather from 'react-native-vector-icons/Feather';
-import {CreateNewStock} from './pages/CreateNewStock';
+
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {NavigationContainer} from '@react-navigation/native';
+
+import CreateNewStock from './pages/CreateNewStock';
+import DailyList from './pages/DailyList';
+import Home from './pages/Home';
 
 const {Navigator, Screen} = createBottomTabNavigator();
 
