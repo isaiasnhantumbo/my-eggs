@@ -1,3 +1,6 @@
+import {ReactNode} from 'react';
+import {TextInputProps} from 'react-native';
+
 import styled from 'styled-components/native';
 
 export const Container = styled.ScrollView`
@@ -42,4 +45,23 @@ export const ButtonText = styled.Text`
   font-weight: 600;
   font-size: 16px;
   color: #4a2b29;
+`;
+
+export const SelectDateButton = styled.TouchableOpacity`
+  background: #efe3c8;
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  padding: 15px 50px;
+`;
+
+export interface InputProps extends TextInputProps {
+  icon?: ReactNode;
+}
+export const InputText = styled.TextInput<InputProps>`
+  background: ${({theme}) => theme.colors.background_input};
+  border-radius: 10px;
+  padding-left: 20px;
+  color: #efe3c880;
+  font-size: 14px;
+  margin-bottom: 24px;
 `;

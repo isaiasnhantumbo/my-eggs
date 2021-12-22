@@ -1,11 +1,15 @@
 /* eslint-disable react/jsx-no-bind */
 import React, {useState} from 'react';
-import {Label} from '../../components/Form/Label';
 import DatePicker from 'react-native-date-picker';
-
-import {Header} from '../../components/Header';
-import {Input} from '../../components/Input';
 import Feather from 'react-native-vector-icons/Feather';
+
+import Realm from 'realm';
+
+import LineSvg from '../../assets/line.svg';
+import {Label} from '../../components/Form/Label';
+import {Header} from '../../components/Header';
+import getRealm from '../../services/realm';
+import formatDate from '../../utils/formatDate';
 import {
   AddButton,
   ButtonText,
@@ -15,13 +19,11 @@ import {
   SummaryContainer,
   SummaryData,
   SummaryTitle,
+  InputText,
+  SelectDateButton,
 } from './styles';
-import LineSvg from '../../assets/line.svg';
-import {Button} from 'react-native';
 
-interface CreateNewStockProps {}
-
-export function CreateNewStock({}: CreateNewStockProps) {
+export default function CreateNewStock() {
   const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
   const [eggs, setEggs] = useState('0');
@@ -52,18 +54,25 @@ export function CreateNewStock({}: CreateNewStockProps) {
       <Header title="Adicionar registo" />
       <FormContainer>
         <Label>Digite o número de ovos produzidos</Label>
-        <Input />
+        <InputText onChangeText={setEggs} value={eggs} />
         <Label>Escolha a data</Label>
-        <Label>{String(date)}</Label>
-        <Input icon={<Feather name="calendar" color="#EFE3C880" size={20} />} />
-        <Button title="Open" onPress={() => setOpen(true)} />
+        <SelectDateButton onPress={() => setOpen(true)}>
+          {/* <Feather name="calendar" color="#EFE3C880" size={20} /> */}
+          <ButtonText>Selecionar Data</ButtonText>
+        </SelectDateButton>
         <DatePicker
           modal
           open={open}
           date={date}
-          onConfirm={date => {
+          title="Escolha a data"
+          confirmText="Confirmar"
+          cancelText="Cancelar"
+          mode="date"
+          locale="pt"
+          onConfirm={(datePickerValue) => {
             setOpen(false);
-            setDate(date);
+            setDate(datePickerValue);
+            setFormattedDate(formatDate(datePickerValue));
           }}
           onCancel={() => {
             setOpen(false);
@@ -74,15 +83,15 @@ export function CreateNewStock({}: CreateNewStockProps) {
         <LineSvg />
         <Summary>
           <SummaryTitle>Data</SummaryTitle>
-          <SummaryData>20/21/2021</SummaryData>
+          <SummaryData>{formattedDate}</SummaryData>
         </Summary>
         <Summary>
           <SummaryTitle>Ovos</SummaryTitle>
-          <SummaryData>80</SummaryData>
+          <SummaryData>{eggs}</SummaryData>
         </Summary>
         <LineSvg />
       </SummaryContainer>
-      <AddButton>
+      <AddButton onPress={handleFormSubmit}>
         <ButtonText>Adicionar registo</ButtonText>
       </AddButton>
     </Container>
