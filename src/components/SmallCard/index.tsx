@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import React from 'react';
 
 import {
@@ -9,17 +10,20 @@ import {
   ButtonText,
 } from './styles';
 
-interface SmallCardProps {}
+interface SmallCardProps {
+  eggs: string;
+  date: string;
+}
 
-export function SmallCard({}: SmallCardProps) {
+export function SmallCard({eggs, date}: SmallCardProps) {
   return (
     <Container>
-      <Quantity>89 Ovos</Quantity>
+      <Quantity>{`${eggs} Ovos`}</Quantity>
       <Footer>
-        <Date>20/12/2021</Date>
-        <EditButton>
+        <Date>{date}</Date>
+        {/* <EditButton>
           <ButtonText>Editar</ButtonText>
-        </EditButton>
+        </EditButton> */}
       </Footer>
     </Container>
   );
