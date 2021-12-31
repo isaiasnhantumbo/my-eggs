@@ -1,4 +1,15 @@
 {
   "name": "MyEggs",
-  "displayName": "MyEggs"
+  "displayName": "MyEggs",
+  "expo": {
+    "name": "MyEggs",
+    "slug": "MyEggs",
+    "scheme": "myeggs",
+    "plugins": [
+      "expo-google-sign-in"
+    ]
+  },
+  "android": {
+    "package": "com/myeggs"
+  }
 }
