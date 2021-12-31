@@ -2,7 +2,9 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "commonjs",
-    "lib": ["es2017"],
+    "lib": [
+      "es2017"
+    ],
     "allowJs": true,
     "jsx": "react-native",
     "noEmit": true,
@@ -13,7 +15,10 @@
     "esModuleInterop": true,
     "skipLibCheck": false,
     "resolveJsonModule": true,
-    "types": ["jest", "styled-components-react-native"]
+    "types": [
+      "jest",
+      "styled-components-react-native"
+    ]
   },
   "exclude": [
     "node_modules",
@@ -21,6 +26,11 @@
     "metro.config.js",
     "jest.config.js"
   ],
-  "include": ["./src"],
-  "files": ["./src/@types/styled.d.ts"]
+  "include": [
+    "./src"
+  ],
+  "files": [
+    "./src/@types/styled.d.ts"
+  ],
+  "extends": "expo/tsconfig.base"
 }
