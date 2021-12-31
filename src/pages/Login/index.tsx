@@ -1,20 +1,45 @@
-import React, {ReactNode} from 'react';
+/* eslint-disable react/jsx-no-bind */
+import React from 'react';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
-import {Text} from 'react-native';
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+} from '@react-native-google-signin/google-signin';
+import {useNavigation} from '@react-navigation/native';
 
-import {Container} from './styles';
+import WelcomeImg from '../../assets/Welcome-amico.png';
+import {useAuth} from '../../hooks/useAuth';
+import {
+  ButtonContinueWithGoogle,
+  ButtonText,
+  Container,
+  WelcomeContainer,
+  WelcomeImage,
+  WelcomeMessage,
+} from './styles';
 
-interface LoginProps {
-  children: ReactNode;
-}
+export default function Login() {
+  const {signIn} = useAuth();
 
-function Login({children}: LoginProps) {
+  const navigation = useNavigation();
+
+  async function signInWithGoogle() {
+    signIn();
+  }
   return (
     <Container>
-      <Text>Login</Text>
-      {children}
+      <WelcomeContainer>
+        <WelcomeMessage>Bem vindo</WelcomeMessage>
+        <WelcomeMessage isSubtitle>
+          Gerencie as informações da sua criação de ovos em local móvel
+        </WelcomeMessage>
+        <WelcomeImage source={WelcomeImg} />
+      </WelcomeContainer>
+      <ButtonContinueWithGoogle onPress={signInWithGoogle}>
+        <ButtonText>Continuar com Google</ButtonText>
+        <AntDesign name="google" size={20} color="#4a2b29" />
+      </ButtonContinueWithGoogle>
     </Container>
   );
 }
-
-export default Login;
