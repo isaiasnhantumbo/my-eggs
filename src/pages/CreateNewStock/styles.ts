@@ -7,7 +7,6 @@ export const Container = styled.ScrollView`
   background: ${({theme}) => theme.colors.background_primary};
   flex: 1;
   padding: 0 18px 0 18px;
-  /* justify-content: space-around; */
 `;
 export const FormContainer = styled.View``;
 
